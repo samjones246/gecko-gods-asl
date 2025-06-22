@@ -11,29 +11,16 @@ init
 {
     vars.Helper.TryLoad = (Func<dynamic, bool>)(mono => {
         var sequenceManager = mono["GeckoGame", "Inresin.Core.IRSequenceManager"];
-        vars.Helper["sequence"] = sequenceManager
-            .MakeString("_instance", "currentSequence", 0x10, 0x30, 0x60);
+        vars.Helper["isCutsceneActive"] = sequenceManager
+            .Make<bool>("_instance", 0x98);
         return true;
     });
 }
 
-update {
-    if (!string.IsNullOrEmpty(vars.Helper.Scenes.Active.Name)) { 
-        current.scene = vars.Helper.Scenes.Active.Name;
-    }
-
-    if (current.scene != old.scene) {
-        vars.Log("scene: " + current.scene);
-    }
-    if (current.sequence != old.sequence) {
-        vars.Log("sequence: " + current.sequence);
-    }
-}
-
 start {
-    return false; //current.sequence != old.sequence && old.sequence == "IntroCutsceneV3";
+    return !current.isCutsceneActive && old.isCutsceneActive;
 }
 
 split {
-    return false; //current.sequence != old.sequence && current.sequence == "EndDemoSequence";
+    return current.isCutsceneActive && !old.isCutsceneActive;
 }
