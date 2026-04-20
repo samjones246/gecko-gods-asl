@@ -1,5 +1,6 @@
 state("GeckoGods") {
     long currentSequence: "GameAssembly.dll", 0x3230288, 0xB8, 0x00, 0x100;
+    string255 sequenceGuid: "GameAssembly.dll", 0x3230288, 0xB8, 0x00, 0x100, 0x30, 0x14;
 }
 
 startup {
@@ -7,16 +8,23 @@ startup {
 
 init
 {
-    print("" + current.currentSequence);
+    print("currentSequence: " + current.currentSequence.ToString("X"));
 }
 
 update {
     if(current.currentSequence != old.currentSequence) {
-        print("" + current.currentSequence);
+        print("currentSequence: " + current.currentSequence.ToString("X"));
+    }
+
+    if (current.sequenceGuid != old.sequenceGuid) {
+        print("sequenceGuid: " + current.sequenceGuid);
     }
 }
 
 start {
+    if (current.currentSequence == 0 && old.currentSequence != 0 && old.sequenceGuid == "") {
+        return true;
+    }
 }
 
 split {
