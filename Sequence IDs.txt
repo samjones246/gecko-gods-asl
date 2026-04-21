@@ -1,0 +1,53 @@
+Tutorial Plaque:  13142fe6-c95f-4853-ad4a-02f6a0415566
+
+
+
+River Temple:
+  - Tower challenge: 
+    - Complete: 5d7a5d74-57ba-4cc6-80ec-b82f126f36a4
+    - Gong: 4012dc95-6192-4193-ad6d-e354ed710735
+  - Water Challenge:
+    - Gong: 734cdc71-2c2c-41f8-acaa-beab07cf235b
+  - Challenge #3: d9768cf0-3b8b-4810-ba32-79d918b5acbc
+  - Challenge #4: f4cbf4d6-cd7c-4e01-a4c3-2cf55198c24a
+  - Elevator open: 8909e77e-b35e-4b72-abf2-afa7bd190193
+  - God statue: 447b21aa-130f-4991-898e-045adb41031d
+  - Boat gate unlock: d1e05747-dffd-4b63-8469-266efb082200
+
+Great Desert:
+  - Lighthouse: e96de462-a4f5-4244-800b-0a4cdbe26275
+Volcano Temple:
+  - Challenge #1: 4b2ef8a8-eab3-4e0a-a07e-b45a6f928f5b 
+  - Challenge #2: 119af4a7-7b12-4775-950f-8781c93af63d
+  - Challenge #3: 8330f88c-db95-413c-8cbb-22551b450e41
+  - Challenge #4: afce6488-3f0e-4c27-bd57-583bf1f4098b
+  - Temple door open: 482455f7-4c39-494d-999f-d614d4ee566a
+  - Plaque #1: 1d77491e-2cb7-43a0-8717-6a70e4083d81
+  - Plaque #2: 9db938de-932e-411b-b768-7b4fa950493e
+  - Plaque #3: 787092b4-34dc-40e2-8173-64db04bf466d
+  - God statue: b7d7418d-94b4-4217-a646-97bcbf35df56
+  - Light cutscene: 19ff905e-eb0b-4b07-8a95-a293e34f5ac7
+
+Ancient Hill:
+  - Slide puzzle #1: 48ae8397-e802-46cf-a303-3bdaf1ab8578
+  - Slide puzzle #2:  df926fb7-c514-4a90-8e07-14d1e4d4aa8c
+  - Tower: a0d0ccf5-d1eb-4b55-a046-f332e801edf7
+
+Singing Peaks:
+  - All Bells: 6ce0434c-6f0d-4dba-9b7f-436255a908b0
+  - Tower: 2b788745-ce88-4b32-9ca0-de4a8c4ac1b9
+
+
+Sailing Island:
+  - Challenges done: c772b4cc-4169-4ce0-a760-ae3f96486082
+  - Tower: 1e21a312-2572-402a-82a6-bfe1c6672933
+  
+
+The Volcano:
+  - Challenge #1: 2bd60cea-2a15-48a5-a155-615741586635
+  - Challenge #2: 3f6facf5-0753-4518-9996-c91b5eef0c08
+  - Challenge #3: 1bfaa080-66ca-457a-a17f-d779a6b38778
+  - Challenge #4: e8e2531b-f663-43a3-8086-71f7c8e0ff6e
+  - God statue :67fc748b-f196-486c-bdeb-d0eb6e2f2ac7
+  - All god statues: 5b7cfd78-a4ca-4e55-b666-ff920cc7634f
+  - End: 800c063d-fdcd-478b-b577-020b7363dd87
