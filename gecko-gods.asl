@@ -1,6 +1,9 @@
 state("GeckoGods") {
     long currentSequence: "GameAssembly.dll", 0x32302B8, 0xB8, 0x00, 0x100;
     string255 sequenceGuid: "GameAssembly.dll", 0x32302B8, 0xB8, 0x00, 0x100, 0x30, 0x14;
+    float totalPlaytime: "GameAssembly.dll", 0x3230298, 0xB8, 0x00, 0x80;
+    int loadingOperations: "GameAssembly.dll", 0x32307B0, 0xB8, 0x00, 0x50, 0x18;
+    int unloadingOperations: "GameAssembly.dll", 0x32307B0, 0xB8, 0x00, 0x58, 0x18;
 }
 
 startup {
@@ -51,6 +54,9 @@ update {
     if (current.sequenceGuid != old.sequenceGuid) {
         print("sequenceGuid: " + current.sequenceGuid);
     }
+    if (current.loadingOperations != old.loadingOperations) {
+        print("loadingOperations: " + current.loadingOperations);
+    }
 }
 
 start {
@@ -80,4 +86,9 @@ split {
             return true;
         }
     }
+}
+
+isLoading
+{
+    return current.totalPlaytime == old.totalPlaytime && (current.loadingOperations > 0 || current.unloadingOperations > 0);
 }
