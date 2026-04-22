@@ -35,12 +35,12 @@ Ancient Hill:
 
 Singing Peaks:
   - All Bells: 6ce0434c-6f0d-4dba-9b7f-436255a908b0
-  - Tower: 2b788745-ce88-4b32-9ca0-de4a8c4ac1b9
+  - Tower: 66f9b89c-cc5a-45ec-9928-3adaecd4ff4e
 
 
 Sailing Island:
   - Challenges done: c772b4cc-4169-4ce0-a760-ae3f96486082
-  - Tower: 1e21a312-2572-402a-82a6-bfe1c6672933
+  - Tower: 78f316a0-32df-4669-923c-0b89aa1b4d83
   
 
 The Volcano:
