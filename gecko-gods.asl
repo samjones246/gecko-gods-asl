@@ -27,8 +27,8 @@ startup {
     };
     vars.MinorIslandTowers = new List<string> {
         "a0d0ccf5-d1eb-4b55-a046-f332e801edf7", // Ancient Hill
-        "66f9b89c-cc5a-45ec-9928-3adaecd4ff4e", // Singing Peaks
-        "78f316a0-32df-4669-923c-0b89aa1b4d83"  // Sailing Isle
+        "a0dde0b2-e004-47c4-9da0-8102eebe5088", // Singing Peaks
+        "0192abb4-3f62-47cc-b3ea-73b11c9ca2b6"  // Sailing Isle
     };
     vars.GodStatues = new List<string> {
         "447b21aa-130f-4991-898e-045adb41031d",
