@@ -2,6 +2,10 @@
 LiveSplit AutoSplitter for Gecko Gods.
 
 ## Features
-Currently only the demo is supported (full game unreleased at time of writing).
 - Auto start when gaining control.
-- Auto split when entering any cutscene, including the ending cutscene which marks the end of the run.
+- Auto split when various cutscenes start:
+  - God statue activation.
+  - Minor island (sailing/ancient/singing) tower activation.
+  - Major island challenges.
+  - Final cutscene (eggs).
+- Load removal - Timer pauses only when the game is completely frozen during a load.
