@@ -1,14 +1,4 @@
-state("GeckoGods") {
-    long currentSequence: "GameAssembly.dll", 0x32302B8, 0xB8, 0x00, 0x100;
-    string255 sequenceGuid: "GameAssembly.dll", 0x32302B8, 0xB8, 0x00, 0x100, 0x30, 0x14;
-    float totalPlaytime: "GameAssembly.dll", 0x3230298, 0xB8, 0x00, 0x80;
-
-    // Inresin.SceneSystem.IRSceneManager
-    int loadingOperations: "GameAssembly.dll", 0x32307B0, 0xB8, 0x00, 0x50, 0x18;
-    int unloadingOperations: "GameAssembly.dll", 0x32307B0, 0xB8, 0x00, 0x58, 0x18;
-    int coreScenesLoaded: "GameAssembly.dll", 0x32307B0, 0xB8, 0x00, 0x74;
-    bool isLoadingScenes: "GameAssembly.dll", 0x32307B0, 0xB8, 0x00, 0x90;
-}
+state("GeckoGods") {}
 
 startup {
     vars.RiverChallenges = new List<string> {
@@ -50,7 +40,52 @@ startup {
     settings.Add("split_statue", true, "Split on God Statue activated");
 }
 
+init {
+    SigScanTarget SigSequenceManager = new SigScanTarget(3, "48 8B 05 ?? ?? ?? ?? 48 8B 88 B8 00 00 00 48 8B 01 48 85 C0 0F 84 ?? ?? ?? ?? 0F B6 70 40") {
+        OnFound = (p, s, ptr) => ptr + 0x4 + game.ReadValue<int>(ptr)
+    };
+    SigScanTarget SigSceneManager = new SigScanTarget(22, "48 85 C0 0F 84 ?? ?? ?? ?? 80 78 58 00 0F 85 ?? ?? ?? ?? 48 8B 0D ?? ?? ?? ?? 83 B9 E4 00 00 00 00") {
+        OnFound = (p, s, ptr) => ptr + 0x4 + game.ReadValue<int>(ptr)
+    };
+    SigScanTarget SigPauseManager = new SigScanTarget(3, "48 8B 05 ?? ?? ?? ?? 48 8B 88 B8 00 00 00 48 8B 01 48 85 C0 74 74 80 78 40 00") {
+        OnFound = (p, s, ptr) => ptr + 0x4 + game.ReadValue<int>(ptr)
+    };
+
+    var module = modules.First(m => m.ModuleName == "GameAssembly.dll");
+    SignatureScanner scanner = new SignatureScanner(game, module.BaseAddress, module.ModuleMemorySize);
+    var sequenceManager = scanner.Scan(SigSequenceManager);
+    print("SequenceManager: GameAssembly.dll+" + (sequenceManager.ToInt64() - module.BaseAddress.ToInt64()).ToString("X"));
+    var sceneManager = scanner.Scan(SigSceneManager);
+    print("SceneManager: GameAssembly.dll+" + (sceneManager.ToInt64() - module.BaseAddress.ToInt64()).ToString("X"));
+    var pauseManager = scanner.Scan(SigPauseManager);
+    print("PauseManager: GameAssembly.dll+" + (pauseManager.ToInt64() - module.BaseAddress.ToInt64()).ToString("X"));
+
+    vars.Watchers = new MemoryWatcherList
+    {
+        new MemoryWatcher<long>(new DeepPointer(sequenceManager, 0xB8, 0x00, 0x100)) { Name = "currentSequence" },
+        new StringWatcher(new DeepPointer(sequenceManager, 0xB8, 0x00, 0x100, 0x30, 0x14), 72) { Name = "sequenceGuid" },
+
+        new MemoryWatcher<float>(new DeepPointer(pauseManager, 0xB8, 0x00, 0x80)) { Name = "totalPlaytime" },
+
+        new MemoryWatcher<int>(new DeepPointer(sceneManager, 0xB8, 0x00, 0x50, 0x18)) { Name = "loadingOperations" },
+        new MemoryWatcher<int>(new DeepPointer(sceneManager, 0xB8, 0x00, 0x58, 0x18)) { Name = "unloadingOperations" },
+        new MemoryWatcher<int>(new DeepPointer(sceneManager, 0xB8, 0x00, 0x74)) { Name = "coreScenesLoaded" },
+        new MemoryWatcher<bool>(new DeepPointer(sceneManager, 0xB8, 0x00, 0x90)) { Name = "isLoadingScenes" }
+    };
+
+    vars.Watchers.UpdateAll(game);
+}
+
 update {
+    vars.Watchers.UpdateAll(game);
+    current.currentSequence = vars.Watchers["currentSequence"].Current;
+    current.sequenceGuid = vars.Watchers["sequenceGuid"].Current;
+    current.totalPlaytime = vars.Watchers["totalPlaytime"].Current;
+    current.loadingOperations = vars.Watchers["loadingOperations"].Current;
+    current.unloadingOperations = vars.Watchers["unloadingOperations"].Current;
+    current.coreScenesLoaded = vars.Watchers["coreScenesLoaded"].Current;
+    current.isLoadingScenes = vars.Watchers["isLoadingScenes"].Current;
+
     current.allLoadingOperations = current.loadingOperations + current.unloadingOperations;
     if(current.currentSequence != old.currentSequence) {
         print("currentSequence: " + current.currentSequence.ToString("X"));
