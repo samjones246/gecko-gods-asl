@@ -133,9 +133,8 @@ split {
 
 isLoading
 {
-    bool loadingOut = current.isLoadingScenes;
-    bool loadingIn = current.coreScenesLoaded == 0 && current.totalPlaytime == old.totalPlaytime;
-    bool loadingZone = current.allLoadingOperations > 0 && current.totalPlaytime == old.totalPlaytime;
+    bool isMainManuOpen = current.isLoadingScenes || current.coreScenesLoaded == 0;
+    bool isLevelTransitionActive = current.allLoadingOperations > 0 && current.totalPlaytime == old.totalPlaytime;
     
-    return loadingOut || loadingIn || loadingZone;
+    return isMainManuOpen || isLevelTransitionActive;
 }
